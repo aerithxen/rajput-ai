@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajput Electronics & AI Technologies — Next-Gen Multimodal Diagnostics</title>
+  <meta name="description" content="Pioneering automated hardware-software diagnostic intelligence and edge telemetry powered by modern foundation models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(255, 255, 255, 0.06);
+      --primary: #f59e0b;
+      --primary-glow: rgba(245, 158, 11, 0.25);
+      --accent: #3b82f6;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    .ambient-glow {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.12) 0%, rgba(59, 130, 246, 0.08) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      background: rgba(9, 10, 15, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #000;
+      font-size: 1rem;
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .btn-contact {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem !important;
+      transition: all 0.2s;
+    }
+    .btn-contact:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+    .hero { text-align: center; max-width: 860px; margin: 0 auto 5rem; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 9999px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .tag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+    }
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #ffffff 30%, #9ca3af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; }
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--primary-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(245, 158, 11, 0.4);
+    }
+    .btn-secondary {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--card-hover); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
+      margin-top: 4rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2.25rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .card:hover {
+      background: var(--card-hover);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-4px);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .architecture-banner {
+      margin-top: 5rem;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.04) 0%, rgba(59, 130, 246, 0.04) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .architecture-banner h2 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; }
+    .architecture-banner p { color: var(--text-muted); font-size: 1.05rem; max-width: 800px; }
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--card-border);
+    }
+    .spec-item h4 { font-size: 1.75rem; font-weight: 800; color: var(--primary); }
+    .spec-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.25rem;
+    }
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.05rem; }
+      .nav-links { display: none; }
+      .architecture-banner { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <div class="logo-badge">R</div>
+        <span>Rajput Electronics & AI</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#platform">AI Platform</a>
+        <a href="#architecture">Architecture</a>
+        <a href="mailto:suraj@rajputelectronics.com" class="btn-contact">Contact Engineering</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="tag">
+        <span></span> Claude 3.5 Sonnet Integration in Beta
+      </div>
+      <h1>Multimodal Diagnostics & Hardware Intelligence</h1>
+      <p>
+        Accelerating complex hardware-software diagnostics, real-time circuit schematic reasoning, and industrial IoT anomaly resolution through advanced foundation models.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:suraj@rajputelectronics.com" class="btn-primary">Request Platform Access</a>
+        <a href="#architecture" class="btn-secondary">Explore Architecture</a>
+      </div>
+    </section>
+    <section id="solutions" class="features-grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Schematic & Circuit Vision</h3>
+        <p>
+          Leveraging Claude's high-resolution visual processing to parse PCB layouts, circuit diagrams, and electrical schematics, pinpointing faulty components and voltage irregularities automatically.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Telemetry Reasoning Engine</h3>
+        <p>
+          Ingesting continuous IoT streams and operational logs. Our reasoning pipeline correlates erratic telemetry patterns with historical failure modes to deliver sub-second root-cause diagnosis.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Autonomous Repair Workflows</h3>
+        <p>
+          Generating validated, step-by-step repair guides and component replacement procedures for technicians, reducing mean-time-to-repair (MTTR) by up to 68%.
+        </p>
+      </div>
+    </section>
+    <section id="architecture" class="architecture-banner">
+      <h2>Engineered for Enterprise Hardware Operations</h2>
+      <p>
+        Founded in 2023, Rajput Electronics & AI Technologies builds the diagnostic nervous system for connected modern hardware. We bridge the gap between complex electrical engineering and generative reasoning agents.
+      </p>
+      <div class="specs">
+        <div class="spec-item">
+          <h4>&lt; 450ms</h4>
+          <p>Diagnostic Inference Latency</p>
+        </div>
+        <div class="spec-item">
+          <h4>200k+</h4>
+          <p>Context Window Capacity</p>
+        </div>
+        <div class="spec-item">
+          <h4>99.4%</h4>
+          <p>Schematic Component Match</p>
+        </div>
+        <div class="spec-item">
+          <h4>2023</h4>
+          <p>Founded & Active Operations</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div>
+        <p>&copy; 2023–2026 Rajput Electronics & AI Technologies. All rights reserved.</p>
+        <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #6b7280;">Official Domain: rajputelectronics.com &bull; Primary Contact: suraj@rajputelectronics.com</p>
+      </div>
+      <div>
+        <a href="mailto:suraj@rajputelectronics.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">suraj@rajputelectronics.com</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
